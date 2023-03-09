@@ -1,26 +1,28 @@
-//
-//  ContentView.swift
-//  TheWeather
-//
-//  Created by W on 3/8/23.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject var viewModel: AppViewModel
+
+    public init(viewModel: AppViewModel) {
+      self.viewModel = viewModel
+    }
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView {
+            VStack {
+                Image(systemName: "globe")
+                    .imageScale(.large)
+                    .foregroundColor(.accentColor)
+                Text(viewModel.currentWeather?.name ?? "")
+            }
+            .padding()
+            .navigationBarTitle("The Weather")
         }
-        .padding()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(viewModel: AppViewModel(weatherRepository: .successSequence))
     }
 }
