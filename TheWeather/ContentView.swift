@@ -1,23 +1,43 @@
 import SwiftUI
-import ImageManager
 
 struct ContentView: View {
     @ObservedObject var viewModel: AppViewModel
-
+    
     public init(viewModel: AppViewModel) {
-      self.viewModel = viewModel
+        self.viewModel = viewModel
     }
     
     var body: some View {
         NavigationView {
-            VStack {
-                CachedImage(urlString: viewModel.currentWeather?.weather.first?.iconURLString ?? "")
-                Text(viewModel.currentWeather?.name ?? "")
-                Text(viewModel.currentWeather?.weather.first?.main ?? "")
-                Text("\(viewModel.currentWeather?.main.temp ?? 0)°")
+            Group {
+                if viewModel.searchPlace.isEmpty {
+                    tileView()
+                } else {
+                    List {
+                        ForEach(viewModel.weatherResults) { place in
+                            VStack(alignment: .leading) {
+                                Text(place.name)
+                                    .font(.headline)
+                                Text(place.state)
+                                Text(place.country)
+                            }
+                        }
+                    }
+                }
             }
-            .padding()
             .navigationBarTitle("The Weather")
+        }
+        .searchable(text: $viewModel.searchPlace, placement: .navigationBarDrawer(displayMode: .always), prompt: "Enter City Or Zip")
+        .onSubmit(of: .search, viewModel.fetchSearchResults)
+        .onChange(of: viewModel.searchPlace) { _ in viewModel.fetchSearchResults() }
+    }
+    
+    @ViewBuilder
+    func tileView() -> some View {
+        if let weather = viewModel.currentWeather {
+            TileView(currentWeather: weather)
+        } else {
+            EmptyView()
         }
     }
 }

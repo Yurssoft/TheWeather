@@ -15,6 +15,7 @@
 		167C123929B8ED300046A74F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 167C123829B8ED300046A74F /* Preview Assets.xcassets */; };
 		167C124329B8ED300046A74F /* TheWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167C124229B8ED300046A74F /* TheWeatherTests.swift */; };
 		167D372C29BBCC5900AC576D /* WeatherRepository in Frameworks */ = {isa = PBXBuildFile; productRef = 167D372B29BBCC5900AC576D /* WeatherRepository */; };
+		167D372E29BBCFCA00AC576D /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167D372D29BBCFCA00AC576D /* TileView.swift */; };
 		16F8C9A129BA0DB60030AA29 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F8C9A029BA0DB60030AA29 /* AppViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,8 @@
 		167C123829B8ED300046A74F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		167C123E29B8ED300046A74F /* TheWeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheWeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		167C124229B8ED300046A74F /* TheWeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheWeatherTests.swift; sourceTree = "<group>"; };
+		167D372D29BBCFCA00AC576D /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
+		167D372F29BBD62F00AC576D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		168F03C229BBC7A5004673E9 /* ImageManager */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ImageManager; sourceTree = "<group>"; };
 		16F8C9A029BA0DB60030AA29 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,8 +89,10 @@
 		167C122F29B8ED300046A74F /* TheWeather */ = {
 			isa = PBXGroup;
 			children = (
+				167D372F29BBD62F00AC576D /* Info.plist */,
 				167C123029B8ED300046A74F /* TheWeatherApp.swift */,
 				167C123229B8ED300046A74F /* ContentView.swift */,
+				167D372D29BBCFCA00AC576D /* TileView.swift */,
 				16F8C9A029BA0DB60030AA29 /* AppViewModel.swift */,
 				167C123429B8ED300046A74F /* Assets.xcassets */,
 				167C123629B8ED300046A74F /* TheWeather.entitlements */,
@@ -226,6 +231,7 @@
 			files = (
 				167C123329B8ED300046A74F /* ContentView.swift in Sources */,
 				167C123129B8ED300046A74F /* TheWeatherApp.swift in Sources */,
+				167D372E29BBCFCA00AC576D /* TileView.swift in Sources */,
 				16F8C9A129BA0DB60030AA29 /* AppViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -371,6 +377,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TheWeather/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -411,6 +418,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TheWeather/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

@@ -42,7 +42,9 @@ public extension WeatherRepository.Weather {
 
 // MARK: - PlaceResponse
 public extension WeatherRepository {
-    struct PlaceResponse: Codable {
+    struct PlaceResponse: Codable, Equatable, Identifiable {
+        public let id = UUID().uuidString
+        
         public let name: String
         public let lat, lon: Double
         public let country, state: String

@@ -3,11 +3,13 @@ import WeatherRepository
 import Combine
 
 public class AppViewModel: ObservableObject {
+    @Published var searchPlace = ""
     @Published var currentWeather: WeatherRepository.CurrentWeatherResponse?
     @Published var currentLocation: WeatherRepository.PlaceResponse? = WeatherRepository.PlaceResponse.mock
     @Published var weatherResults: [WeatherRepository.PlaceResponse] = []
     
     var weatherRequestCancellable: AnyCancellable?
+    var weatherPlaceRequestCancellable: AnyCancellable?
     
     let weatherRepository: WeatherRepository
     
@@ -28,5 +30,17 @@ public class AppViewModel: ObservableObject {
             receiveValue: { [weak self] response in
               self?.currentWeather = response
           })
+    }
+    
+    func fetchSearchResults() {
+        weatherPlaceRequestCancellable = weatherRepository
+            .searchPlace(searchPlace)
+            .receive(on: DispatchQueue.main)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { [unowned self] places in
+                    weatherResults = places
+                }
+            )
     }
 }
