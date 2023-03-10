@@ -1,4 +1,5 @@
 import SwiftUI
+import ImageManager
 
 struct ContentView: View {
     @ObservedObject var viewModel: AppViewModel
@@ -10,10 +11,10 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Image(systemName: "globe")
-                    .imageScale(.large)
-                    .foregroundColor(.accentColor)
+                CachedImage(urlString: viewModel.currentWeather?.weather.first?.iconURLString ?? "")
                 Text(viewModel.currentWeather?.name ?? "")
+                Text(viewModel.currentWeather?.weather.first?.main ?? "")
+                Text("\(viewModel.currentWeather?.main.temp ?? 0)°")
             }
             .padding()
             .navigationBarTitle("The Weather")

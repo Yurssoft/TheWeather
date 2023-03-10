@@ -34,6 +34,12 @@ public extension WeatherRepository {
     }
 }
 
+public extension WeatherRepository.Weather {
+    var iconURLString: String {
+    "https://openweathermap.org/img/wn/\(icon)@2x.png"
+    }
+}
+
 // MARK: - PlaceResponse
 public extension WeatherRepository {
     struct PlaceResponse: Codable {
