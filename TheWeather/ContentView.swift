@@ -15,11 +15,13 @@ struct ContentView: View {
                 } else {
                     List {
                         ForEach(viewModel.weatherResults) { place in
-                            VStack(alignment: .leading) {
-                                Text(place.name)
-                                    .font(.headline)
-                                Text(place.state)
-                                Text(place.country)
+                            Button(action: { viewModel.selectPlace(place: place) }) {
+                                VStack(alignment: .leading) {
+                                    Text(place.name)
+                                        .font(.headline)
+                                    Text(place.state)
+                                    Text(place.country)
+                                }
                             }
                         }
                     }
@@ -37,7 +39,7 @@ struct ContentView: View {
         if let weather = viewModel.currentWeather {
             TileView(currentWeather: weather)
         } else {
-            EmptyView()
+            Text("Search For Place")
         }
     }
 }

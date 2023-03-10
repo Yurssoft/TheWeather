@@ -64,4 +64,14 @@ public extension WeatherRepository.PlaceResponse {
     static var mock: Self {
         Self(name: "Chicago", lat: 41.8755616, lon: -87.6244212, country: "US", state: "Illinois")
     }
+    
+    func toData() -> Data {
+        try! JSONEncoder().encode(self)
+    }
+}
+
+public extension Data {
+    func toResponse() -> WeatherRepository.PlaceResponse {
+        try! JSONDecoder().decode(WeatherRepository.PlaceResponse.self, from: self)
+    }
 }

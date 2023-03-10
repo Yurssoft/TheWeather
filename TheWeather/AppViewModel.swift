@@ -3,9 +3,10 @@ import WeatherRepository
 import Combine
 
 public class AppViewModel: ObservableObject {
+    static private let defaultsPlaceKey = "\(AppViewModel.self)defaultsPlaceKey"
     @Published var searchPlace = ""
     @Published var currentWeather: WeatherRepository.CurrentWeatherResponse?
-    @Published var currentLocation: WeatherRepository.PlaceResponse? = WeatherRepository.PlaceResponse.mock
+    @Published var currentLocation: WeatherRepository.PlaceResponse?
     @Published var weatherResults: [WeatherRepository.PlaceResponse] = []
     
     var weatherRequestCancellable: AnyCancellable?
@@ -15,6 +16,9 @@ public class AppViewModel: ObservableObject {
     
     public init(weatherRepository: WeatherRepository) {
         self.weatherRepository = weatherRepository
+        if let placeData = UserDefaults.standard.value(forKey: Self.defaultsPlaceKey) as? Data {
+            currentLocation = placeData.toResponse()
+        }
         fetchWeather()
     }
     
@@ -30,6 +34,11 @@ public class AppViewModel: ObservableObject {
             receiveValue: { [weak self] response in
               self?.currentWeather = response
           })
+    }
+    
+    func selectPlace(place: WeatherRepository.PlaceResponse) {
+        UserDefaults.standard.setValue(place.toData(), forKey: Self.defaultsPlaceKey)
+        currentLocation = place
     }
     
     func fetchSearchResults() {
