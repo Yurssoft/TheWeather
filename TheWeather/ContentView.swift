@@ -32,6 +32,9 @@ struct ContentView: View {
         .searchable(text: $viewModel.searchPlace, placement: .navigationBarDrawer(displayMode: .always), prompt: "Enter City Or Zip")
         .onSubmit(of: .search, viewModel.fetchSearchResults)
         .onChange(of: viewModel.searchPlace) { _ in viewModel.fetchSearchResults() }
+        .alert(item: $viewModel.errorText) { text in
+            Alert(title: Text(viewModel.errorText?.text ?? ""), message: Text("-"), dismissButton: .default(Text("Got it!")))
+        }
     }
     
     @ViewBuilder
@@ -46,6 +49,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(viewModel: AppViewModel(weatherRepository: .successSequence))
+        ContentView(viewModel: AppViewModel(weatherRepository: .successSequence, locationClient: .authorizedWhenInUseSequence))
     }
 }

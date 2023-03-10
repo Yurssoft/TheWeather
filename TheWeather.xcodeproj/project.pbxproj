@@ -16,6 +16,7 @@
 		167C124329B8ED300046A74F /* TheWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167C124229B8ED300046A74F /* TheWeatherTests.swift */; };
 		167D372C29BBCC5900AC576D /* WeatherRepository in Frameworks */ = {isa = PBXBuildFile; productRef = 167D372B29BBCC5900AC576D /* WeatherRepository */; };
 		167D372E29BBCFCA00AC576D /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167D372D29BBCFCA00AC576D /* TileView.swift */; };
+		167D373229BBE41800AC576D /* LocationClient in Frameworks */ = {isa = PBXBuildFile; productRef = 167D373129BBE41800AC576D /* LocationClient */; };
 		16F8C9A129BA0DB60030AA29 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F8C9A029BA0DB60030AA29 /* AppViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		167C124229B8ED300046A74F /* TheWeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheWeatherTests.swift; sourceTree = "<group>"; };
 		167D372D29BBCFCA00AC576D /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
 		167D372F29BBD62F00AC576D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		167D373029BBE3D300AC576D /* LocationClient */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LocationClient; sourceTree = "<group>"; };
 		168F03C229BBC7A5004673E9 /* ImageManager */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = ImageManager; sourceTree = "<group>"; };
 		16F8C9A029BA0DB60030AA29 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -50,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				167D373229BBE41800AC576D /* LocationClient in Frameworks */,
 				1679422829BBCB4800980EC4 /* ImageManager in Frameworks */,
 				167D372C29BBCC5900AC576D /* WeatherRepository in Frameworks */,
 			);
@@ -68,6 +71,7 @@
 		167C122429B8ED2F0046A74F = {
 			isa = PBXGroup;
 			children = (
+				167D373029BBE3D300AC576D /* LocationClient */,
 				168F03C229BBC7A5004673E9 /* ImageManager */,
 				1602576029B8FA1F0039CDCA /* WeatherRepository */,
 				167C122F29B8ED300046A74F /* TheWeather */,
@@ -143,6 +147,7 @@
 			packageProductDependencies = (
 				1679422729BBCB4800980EC4 /* ImageManager */,
 				167D372B29BBCC5900AC576D /* WeatherRepository */,
+				167D373129BBE41800AC576D /* LocationClient */,
 			);
 			productName = TheWeather;
 			productReference = 167C122D29B8ED300046A74F /* TheWeather.app */;
@@ -378,6 +383,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TheWeather/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Used to track you :)";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Used to track you :)";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -419,6 +426,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = TheWeather/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Used to track you :)";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Used to track you :)";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -532,6 +541,10 @@
 		167D372B29BBCC5900AC576D /* WeatherRepository */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = WeatherRepository;
+		};
+		167D373129BBE41800AC576D /* LocationClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LocationClient;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

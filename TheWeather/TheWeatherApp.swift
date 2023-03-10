@@ -4,7 +4,7 @@ import SwiftUI
 struct TheWeatherApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView(viewModel: AppViewModel(weatherRepository: .current))
+            ContentView(viewModel: AppViewModel(weatherRepository: .current, locationClient: .current))
         }
     }
 }

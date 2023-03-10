@@ -68,6 +68,10 @@ public extension WeatherRepository.PlaceResponse {
     func toData() -> Data {
         try! JSONEncoder().encode(self)
     }
+    
+    static func createFrom(location: CLLocationCoordinate2D) -> Self {
+        Self(name: "", lat: location.latitude, lon: location.longitude, country: "", state: "")
+    }
 }
 
 public extension Data {
