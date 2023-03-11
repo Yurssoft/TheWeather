@@ -64,10 +64,8 @@ public class AppViewModel: ObservableObject {
                     errorText = ErrorWrapper(text: "Location general error")
                 }
             }
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.locationClient.requestWhenInUseAuthorization()
-            self.locationClient.requestLocation()
-//        }
+        locationClient.requestWhenInUseAuthorization()
+        locationClient.requestLocation()
     }
     
     func fetchWeather() {
@@ -79,9 +77,13 @@ public class AppViewModel: ObservableObject {
             .currentWeather(location.coordinate)
             .receive(on: DispatchQueue.main)
             .sink(
-                receiveCompletion: { _ in },
-                receiveValue: { [weak self] response in
-                    self?.currentWeather = response
+                receiveCompletion: { [unowned self] completion in
+                    if case .failure(let error) = completion {
+                        errorText = ErrorWrapper(text: error.localizedDescription)
+                    }
+                },
+                receiveValue: { [unowned self] response in
+                    currentWeather = response
                 })
     }
     
@@ -97,7 +99,11 @@ public class AppViewModel: ObservableObject {
             .searchPlace(searchPlace)
             .receive(on: DispatchQueue.main)
             .sink(
-                receiveCompletion: { _ in },
+                receiveCompletion: { [unowned self] completion in
+                    if case .failure(let error) = completion {
+                        errorText = ErrorWrapper(text: error.localizedDescription)
+                    }
+                },
                 receiveValue: { [unowned self] places in
                     weatherResults = places
                 }
