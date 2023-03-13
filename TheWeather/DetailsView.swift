@@ -13,6 +13,7 @@ struct DetailsViewControllerSwiftUI: UIViewControllerRepresentable {
     func makeUIViewController(context: Context) -> UIViewControllerType {
         let details = DetailsViewController()
         let model = DetailsViewController.ViewModel(weather: weather)
+        details.viewModel = model
         return details
     }
 
@@ -49,21 +50,17 @@ final class DetailsViewController: UIViewController {
     let image = UIImageView()
     let label = UILabel()
     
-    private var viewModel: DetailsViewController.ViewModel! {
-        didSet {
-            setupBindings() // controller inits faster, so we wait for model to arrive
-        }
-    }
+    var viewModel: DetailsViewController.ViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(image)
         view.addSubview(label)
-        image.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        image.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        
-        label.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 8).isActive = true
-        label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        image.translatesAutoresizingMaskIntoConstraints = false
+        label.translatesAutoresizingMaskIntoConstraints = false
+        // possible to add constraints
+        setupBindings()
     }
     
     private func setupBindings() {

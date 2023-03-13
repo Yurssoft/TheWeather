@@ -7,9 +7,9 @@ struct TileView: View {
     var body: some View {
         VStack {
             CachedImage(urlString: currentWeather.weather.first?.iconURLString ?? "")
-            Text(currentWeather.name ?? "")
+            Text(currentWeather.name)
             Text(currentWeather.weather.first?.main ?? "")
-            Text("\(currentWeather.main.temp ?? 0)°")
+            Text("\(currentWeather.main.temp)°")
         }
         .padding()
     }
