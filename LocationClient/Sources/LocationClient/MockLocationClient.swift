@@ -8,7 +8,7 @@ extension LocationClient {
         return Self(
             authorizationStatus: { .authorizedWhenInUse },
             requestWhenInUseAuthorization: { },
-            requestLocation: { subject.send(.didUpdateLocations([CLLocation()])) },
+            requestLocation: { subject.send(.didUpdateLocations([CLLocation(latitude: 41.8755616, longitude: -87.6244212)])) },
             delegate: subject.eraseToAnyPublisher()
         )
     }

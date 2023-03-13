@@ -31,11 +31,12 @@ final class TheWeatherTests: XCTestCase {
             locationClient: .authorizedWhenInUseSequence,
             id: "Mock.ID"
         )
-        
-        // we need to wait, as location fetched in delegate in async
+        viewModel.fetchSearchResults()
+        // we need to wait, as we have async
         _ = XCTWaiter.wait(for: [expectation(description: "Wait for seconds")], timeout: 1.0)
         
-        XCTAssertEqual(viewModel.currentLocation!, .mock)
+        XCTAssertEqual(viewModel.currentLocation!.coordinate.longitude, WeatherRepository.PlaceResponse.mock.coordinate.longitude)
+        XCTAssertEqual(viewModel.currentLocation!.coordinate.latitude, WeatherRepository.PlaceResponse.mock.coordinate.latitude)
         XCTAssertEqual(viewModel.weatherResults, [.mock])
     }
 }
