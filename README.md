@@ -5,3 +5,6 @@
 - not to posih search, sometimes it is stuck, it is possible to add debounce
 - not to handle all possible location & requests errors
 - did not create repository & location tests as this objects very straightforward
+- simplify only important view model tests
+- basic details, not polished. Main point is to use UIKit
+- would be nice to have state with loading and error

@@ -41,7 +41,11 @@ struct ContentView: View {
     @ViewBuilder
     func tileView() -> some View {
         if let weather = viewModel.currentWeather {
-            TileView(currentWeather: weather)
+            NavigationLink {
+                DetailsViewControllerSwiftUI(weather: viewModel.currentWeather!)
+            } label: {
+                TileView(currentWeather: weather)
+            }
         } else {
             Text("Search For Place")
         }

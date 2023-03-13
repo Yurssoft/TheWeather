@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1602576129B8FA200039CDCA /* WeatherRepository in Resources */ = {isa = PBXBuildFile; fileRef = 1602576029B8FA1F0039CDCA /* WeatherRepository */; };
+		16666F6429BF658100087B48 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16666F6329BF658100087B48 /* DetailsView.swift */; };
 		1679422829BBCB4800980EC4 /* ImageManager in Frameworks */ = {isa = PBXBuildFile; productRef = 1679422729BBCB4800980EC4 /* ImageManager */; };
 		167C123129B8ED300046A74F /* TheWeatherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167C123029B8ED300046A74F /* TheWeatherApp.swift */; };
 		167C123329B8ED300046A74F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167C123229B8ED300046A74F /* ContentView.swift */; };
@@ -32,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		1602576029B8FA1F0039CDCA /* WeatherRepository */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = WeatherRepository; sourceTree = "<group>"; };
+		16666F6329BF658100087B48 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		167C122D29B8ED300046A74F /* TheWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		167C123029B8ED300046A74F /* TheWeatherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheWeatherApp.swift; sourceTree = "<group>"; };
 		167C123229B8ED300046A74F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				167C123229B8ED300046A74F /* ContentView.swift */,
 				167D372D29BBCFCA00AC576D /* TileView.swift */,
 				16F8C9A029BA0DB60030AA29 /* AppViewModel.swift */,
+				16666F6329BF658100087B48 /* DetailsView.swift */,
 				167C123429B8ED300046A74F /* Assets.xcassets */,
 				167C123629B8ED300046A74F /* TheWeather.entitlements */,
 				167C123729B8ED300046A74F /* Preview Content */,
@@ -235,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				167C123329B8ED300046A74F /* ContentView.swift in Sources */,
+				16666F6429BF658100087B48 /* DetailsView.swift in Sources */,
 				167C123129B8ED300046A74F /* TheWeatherApp.swift in Sources */,
 				167D372E29BBCFCA00AC576D /* TileView.swift in Sources */,
 				16F8C9A129BA0DB60030AA29 /* AppViewModel.swift in Sources */,
