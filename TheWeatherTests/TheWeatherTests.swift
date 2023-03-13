@@ -36,7 +36,7 @@ final class TheWeatherTests: XCTestCase {
         viewModel.onAppear()
         viewModel.fetchSearchResults()
         // we need to wait, as we have async
-        _ = XCTWaiter.wait(for: [expectation(description: "Wait for seconds")], timeout: 0.5)
+        _ = XCTWaiter.wait(for: [expectation(description: "Wait for seconds")], timeout: 0.1)
         
         XCTAssertEqual(viewModel.currentLocation!.coordinate.longitude, WeatherRepository.PlaceResponse.mock.coordinate.longitude)
         XCTAssertEqual(viewModel.currentLocation!.coordinate.latitude, WeatherRepository.PlaceResponse.mock.coordinate.latitude)
@@ -74,11 +74,11 @@ final class TheWeatherTests: XCTestCase {
         authorizationStatus = .authorizedWhenInUse
         viewModel.onAppear()
         
-        _ = XCTWaiter.wait(for: [expectation(description: "")], timeout: 0.5)
+        _ = XCTWaiter.wait(for: [expectation(description: "")], timeout: 0.1)
         
         viewModel.fetchSearchResults()
         
-        _ = XCTWaiter.wait(for: [expectation(description: "")], timeout: 0.5)
+        _ = XCTWaiter.wait(for: [expectation(description: "")], timeout: 0.1)
         
         
         XCTAssertEqual(viewModel.currentLocation!.coordinate.longitude, WeatherRepository.PlaceResponse.mock.coordinate.longitude)
