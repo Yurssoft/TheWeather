@@ -43,7 +43,7 @@ public extension WeatherRepository.Weather {
 // MARK: - PlaceResponse
 public extension WeatherRepository {
     struct PlaceResponse: Codable, Equatable, Identifiable {
-        public let id = UUID().uuidString
+        public var id = UUID().uuidString
         
         public let name: String
         public let lat, lon: Double
@@ -62,7 +62,7 @@ public extension WeatherRepository.PlaceResponse {
     }
     
     static var mock: Self {
-        Self(name: "Chicago", lat: 41.8755616, lon: -87.6244212, country: "US", state: "Illinois")
+        Self(id: "mock.identifier", name: "Chicago", lat: 41.8755616, lon: -87.6244212, country: "US", state: "Illinois")
     }
     
     func toData() -> Data {

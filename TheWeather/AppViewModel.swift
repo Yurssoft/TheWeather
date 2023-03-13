@@ -9,6 +9,7 @@ struct ErrorWrapper: Equatable, Identifiable {
 }
 
 public class AppViewModel: ObservableObject {
+    private let id: String
     static private let defaultsPlaceKey = "\(AppViewModel.self)defaultsPlaceKey"
     @Published var searchPlace = ""
     @Published var errorText: ErrorWrapper?
@@ -23,9 +24,10 @@ public class AppViewModel: ObservableObject {
     let weatherRepository: WeatherRepository
     let locationClient: LocationClient
     
-    public init(weatherRepository: WeatherRepository, locationClient: LocationClient) {
+    public init(weatherRepository: WeatherRepository, locationClient: LocationClient, id: String = UUID().uuidString) {
         self.weatherRepository = weatherRepository
         self.locationClient = locationClient
+        self.id = id
         if let placeData = UserDefaults.standard.value(forKey: Self.defaultsPlaceKey) as? Data {
             currentLocation = placeData.toResponse()
         }
