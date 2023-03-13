@@ -1,5 +1,7 @@
 import XCTest
 import Combine
+import CoreLocation
+import LocationClient
 @testable import WeatherRepository
 @testable import TheWeather
 
@@ -31,9 +33,53 @@ final class TheWeatherTests: XCTestCase {
             locationClient: .authorizedWhenInUseSequence,
             id: "Mock.ID"
         )
+        viewModel.onAppear()
         viewModel.fetchSearchResults()
         // we need to wait, as we have async
-        _ = XCTWaiter.wait(for: [expectation(description: "Wait for seconds")], timeout: 1.0)
+        _ = XCTWaiter.wait(for: [expectation(description: "Wait for seconds")], timeout: 0.5)
+        
+        XCTAssertEqual(viewModel.currentLocation!.coordinate.longitude, WeatherRepository.PlaceResponse.mock.coordinate.longitude)
+        XCTAssertEqual(viewModel.currentLocation!.coordinate.latitude, WeatherRepository.PlaceResponse.mock.coordinate.latitude)
+        XCTAssertEqual(viewModel.weatherResults, [.mock])
+    }
+    
+    func testLocationAuthStatusChange() {
+        var authorizationStatus = CLAuthorizationStatus.notDetermined
+        let locationDelegateSubject = PassthroughSubject<LocationClient.DelegateEvent, Never>()
+
+        let viewModel = AppViewModel(
+            weatherRepository: WeatherRepository(
+                currentWeather: { _ in .init(.mock) },
+                searchPlace: { _ in .init([.mock]) }
+            ), locationClient: LocationClient(
+                authorizationStatus: { authorizationStatus },
+                requestWhenInUseAuthorization: {
+                    if authorizationStatus == .authorizedWhenInUse {
+                        locationDelegateSubject.send(.didChangeAuthorization(authorizationStatus))
+                    }
+                },
+                requestLocation: {
+                    if authorizationStatus == .authorizedWhenInUse {
+                        locationDelegateSubject.send(.didUpdateLocations([LocationClient.chicago]))
+                    }
+                },
+                delegate: locationDelegateSubject.eraseToAnyPublisher()
+            ),
+            id: "Mock.ID"
+        )
+
+        XCTAssertEqual(viewModel.currentLocation, nil)
+        XCTAssertEqual(viewModel.weatherResults, [])
+        
+        authorizationStatus = .authorizedWhenInUse
+        viewModel.onAppear()
+        
+        _ = XCTWaiter.wait(for: [expectation(description: "")], timeout: 0.5)
+        
+        viewModel.fetchSearchResults()
+        
+        _ = XCTWaiter.wait(for: [expectation(description: "")], timeout: 0.5)
+        
         
         XCTAssertEqual(viewModel.currentLocation!.coordinate.longitude, WeatherRepository.PlaceResponse.mock.coordinate.longitude)
         XCTAssertEqual(viewModel.currentLocation!.coordinate.latitude, WeatherRepository.PlaceResponse.mock.coordinate.latitude)

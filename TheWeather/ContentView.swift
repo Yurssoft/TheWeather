@@ -35,6 +35,7 @@ struct ContentView: View {
         .alert(item: $viewModel.errorText) { text in
             Alert(title: Text(viewModel.errorText?.text ?? ""), message: Text("-"), dismissButton: .default(Text("Got it!")))
         }
+        .onAppear(perform: viewModel.onAppear)
     }
     
     @ViewBuilder

@@ -31,8 +31,12 @@ public class AppViewModel: ObservableObject {
         if let placeData = UserDefaults.standard.value(forKey: Self.defaultsPlaceKey) as? Data {
             currentLocation = placeData.toResponse()
         }
-        fetchWeather()
+    }
+    
+    func onAppear() {
         subscribeToLocationDelegate()
+        requestLocation()
+        fetchWeather()
     }
     
     private func subscribeToLocationDelegate() {
@@ -66,6 +70,9 @@ public class AppViewModel: ObservableObject {
                     errorText = ErrorWrapper(text: "Location general error")
                 }
             }
+    }
+    
+    func requestLocation() {
         locationClient.requestWhenInUseAuthorization()
         locationClient.requestLocation()
     }
