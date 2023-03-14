@@ -7,4 +7,4 @@
 - did not create repository & location tests as this objects very straightforward
 - simplify only important view model tests
 - basic details, not polished. Main point is to use UIKit
-- would be nice to have state with loading and error
+- would be nice to have state with loading and error, this is what would I usually do
